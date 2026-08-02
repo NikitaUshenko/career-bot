@@ -1,0 +1,102 @@
+[
+  {
+    "id": "databricks",
+    "name": "Databricks",
+    "careersUrl": "https://www.databricks.com/company/careers",
+    "enabled": true,
+    "source": {
+      "type": "greenhouse",
+      "boardToken": "databricks"
+    }
+  },
+  {
+    "id": "jetbrains",
+    "name": "JetBrains",
+    "careersUrl": "https://www.jetbrains.com/careers/jobs/",
+    "enabled": true,
+    "source": {
+      "type": "greenhouse",
+      "boardToken": "jetbrains"
+    }
+  },
+  {
+    "id": "planet",
+    "name": "Planet",
+    "careersUrl": "https://www.planet.com/company/careers/",
+    "enabled": true,
+    "source": {
+      "type": "greenhouse",
+      "boardToken": "planetlabs"
+    }
+  },
+  {
+    "id": "figma",
+    "name": "Figma",
+    "careersUrl": "https://www.figma.com/careers/",
+    "enabled": true,
+    "source": {
+      "type": "greenhouse",
+      "boardToken": "figma"
+    }
+  },
+  {
+    "id": "cloudflare",
+    "name": "Cloudflare",
+    "careersUrl": "https://www.cloudflare.com/careers/jobs/",
+    "enabled": true,
+    "source": {
+      "type": "greenhouse",
+      "boardToken": "cloudflare"
+    }
+  },
+  {
+    "id": "mongodb",
+    "name": "MongoDB",
+    "careersUrl": "https://www.mongodb.com/company/careers",
+    "enabled": true,
+    "source": {
+      "type": "greenhouse",
+      "boardToken": "mongodb"
+    }
+  },
+  {
+    "id": "snyk",
+    "name": "Snyk",
+    "careersUrl": "https://snyk.io/careers/",
+    "enabled": true,
+    "source": {
+      "type": "greenhouse",
+      "boardToken": "snyk"
+    }
+  },
+  {
+    "id": "adyen",
+    "name": "Adyen",
+    "careersUrl": "https://careers.adyen.com/",
+    "enabled": true,
+    "source": {
+      "type": "greenhouse",
+      "boardToken": "adyen"
+    }
+  },
+  {
+    "id": "imc",
+    "name": "IMC",
+    "careersUrl": "https://www.imc.com/eu/careers/",
+    "enabled": true,
+    "source": {
+      "type": "greenhouse",
+      "boardToken": "imc"
+    }
+  },
+  {
+    "id": "manychat",
+    "name": "Manychat",
+    "careersUrl": "https://manychat.com/careers",
+    "enabled": true,
+    "source": {
+      "type": "greenhouse",
+      "boardToken": "manychat"
+    }
+  }
+]

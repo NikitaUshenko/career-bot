@@ -1,0 +1,75 @@
+name: Scan company career pages
+
+on:
+  workflow_dispatch:
+    inputs:
+      notify_existing:
+        description: "Evaluate currently open jobs instead of only future jobs"
+        required: false
+        type: boolean
+        default: false
+  schedule:
+    - cron: "0 8,20 * * *"
+      timezone: "Europe/Amsterdam"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: career-watch-scan
+  cancel-in-progress: false
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      GEMINI_MODEL: ${{ vars.GEMINI_MODEL || 'gemini-3.5-flash-lite' }}
+      GEMINI_USE_GOOGLE_SEARCH: ${{ vars.GEMINI_USE_GOOGLE_SEARCH || 'false' }}
+      ENGINEERING_BASELINE_EUR: ${{ vars.ENGINEERING_BASELINE_EUR || '0' }}
+      DESIGN_BASELINE_EUR: ${{ vars.DESIGN_BASELINE_EUR || '0' }}
+      DESIRED_IMPROVEMENT_PERCENT: ${{ vars.DESIRED_IMPROVEMENT_PERCENT || '10' }}
+      MIN_MATCH_SCORE: ${{ vars.MIN_MATCH_SCORE || '70' }}
+      INCLUDE_POSSIBLE_MATCHES: ${{ vars.INCLUDE_POSSIBLE_MATCHES || 'true' }}
+      MAX_AI_JOBS_PER_RUN: ${{ vars.MAX_AI_JOBS_PER_RUN || '30' }}
+      SEND_SCAN_SUMMARY: ${{ vars.SEND_SCAN_SUMMARY || 'false' }}
+      SEND_SOURCE_ERRORS: ${{ vars.SEND_SOURCE_ERRORS || 'true' }}
+      NOTIFY_UPDATES: ${{ vars.NOTIFY_UPDATES || 'false' }}
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Run tests
+        run: npm test
+
+      - name: Scan careers
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.notify_existing }}" = "true" ]; then
+            npm run scan:existing
+          else
+            npm run scan
+          fi
+
+      - name: Persist deduplication state
+        run: |
+          if git diff --quiet -- data/state.json; then
+            echo "No state changes to commit."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/state.json
+          git commit -m "chore: update career scan state"
+          git push
