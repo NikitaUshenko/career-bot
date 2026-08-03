@@ -99,8 +99,10 @@
     "careersUrl": "https://snyk.io/careers/",
     "enabled": true,
     "source": {
-      "type": "greenhouse",
-      "boardToken": "snyk"
+      "type": "workday",
+      "host": "https://snyk.wd103.myworkdayjobs.com",
+      "tenant": "snyk",
+      "site": "External"
     }
   },
   {

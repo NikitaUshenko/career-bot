@@ -229,6 +229,23 @@ Miro publishes Greenhouse-backed structured job data through its official career
 }
 ```
 
+### Workday
+
+```json
+{
+  "id": "example",
+  "name": "Example",
+  "careersUrl": "https://example.com/careers",
+  "enabled": true,
+  "source": {
+    "type": "workday",
+    "host": "https://example.wd1.myworkdayjobs.com",
+    "tenant": "example",
+    "site": "External"
+  }
+}
+```
+
 ## 6. Gemini configuration
 
 The inexpensive default is:
