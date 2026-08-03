@@ -98,5 +98,76 @@
       "type": "greenhouse",
       "boardToken": "manychat"
     }
+  },
+  {
+    "id": "flow-traders",
+    "name": "Flow Traders",
+    "careersUrl": "https://www.flowtraders.com/careers",
+    "enabled": true,
+    "source": {
+      "type": "greenhouse",
+      "boardToken": "flowtraders"
+    }
+  },
+  {
+    "id": "datadog",
+    "name": "Datadog",
+    "careersUrl": "https://careers.datadoghq.com/",
+    "enabled": true,
+    "source": {
+      "type": "greenhouse",
+      "boardToken": "datadog"
+    }
+  },
+  {
+    "id": "reddit",
+    "name": "Reddit",
+    "careersUrl": "https://redditinc.com/careers",
+    "enabled": true,
+    "source": {
+      "type": "greenhouse",
+      "boardToken": "reddit"
+    }
+  },
+  {
+    "id": "gitlab",
+    "name": "GitLab",
+    "careersUrl": "https://about.gitlab.com/jobs/",
+    "enabled": true,
+    "source": {
+      "type": "greenhouse",
+      "boardToken": "gitlab"
+    }
+  },
+  {
+    "id": "elastic",
+    "name": "Elastic",
+    "careersUrl": "https://www.elastic.co/careers/",
+    "enabled": true,
+    "source": {
+      "type": "greenhouse",
+      "boardToken": "elastic"
+    }
+  },
+  {
+    "id": "grafana-labs",
+    "name": "Grafana Labs",
+    "careersUrl": "https://grafana.com/about/careers/open-positions/",
+    "enabled": true,
+    "source": {
+      "type": "greenhouse",
+      "boardToken": "grafanalabs"
+    }
+  },
+  {
+    "id": "palantir",
+    "name": "Palantir",
+    "careersUrl": "https://www.palantir.com/careers/",
+    "enabled": true,
+    "source": {
+      "type": "lever",
+      "site": "palantir",
+      "region": "global"
+    }
   }
 ]

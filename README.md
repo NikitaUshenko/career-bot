@@ -127,6 +127,13 @@ Edit `config/companies.json`. The starter list includes:
 - Adyen
 - IMC
 - Manychat
+- Flow Traders
+- Datadog
+- Reddit
+- GitLab
+- Elastic
+- Grafana Labs
+- Palantir
 
 Set `"enabled": false` to temporarily skip a company.
 
