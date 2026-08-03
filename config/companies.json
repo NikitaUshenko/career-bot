@@ -22,6 +22,28 @@
     }
   },
   {
+    "id": "miro",
+    "name": "Miro",
+    "careersUrl": "https://miro.com/careers/open-positions/",
+    "enabled": true,
+    "source": {
+      "type": "miro",
+      "jobsUrl": "https://miro.com/careers/open-positions/",
+      "vacancyBaseUrl": "https://miro.com/careers/vacancy"
+    }
+  },
+  {
+    "id": "spotify",
+    "name": "Spotify",
+    "careersUrl": "https://www.lifeatspotify.com/jobs",
+    "enabled": true,
+    "source": {
+      "type": "lever",
+      "site": "spotify",
+      "region": "global"
+    }
+  },
+  {
     "id": "jetbrains",
     "name": "JetBrains",
     "careersUrl": "https://www.jetbrains.com/careers/jobs/",

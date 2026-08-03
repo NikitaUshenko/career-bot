@@ -119,6 +119,8 @@ Edit `config/companies.json`. The starter list includes:
 
 - Databricks
 - Booking.com
+- Miro
+- Spotify
 - JetBrains
 - Planet
 - Figma
@@ -205,6 +207,24 @@ Use `"region": "global"` for `jobs.lever.co` and `"region": "eu"` for the EU Lev
     "apiUrl": "https://jobs.example.com/api/jobs",
     "jobBaseUrl": "https://jobs.example.com/jobs",
     "brand": "Example"
+  }
+}
+```
+
+### Miro careers
+
+Miro publishes Greenhouse-backed structured job data through its official careers pages. The dedicated adapter reads that data and fetches full descriptions only for roles that could pass the location and role prefilter.
+
+```json
+{
+  "id": "miro",
+  "name": "Miro",
+  "careersUrl": "https://miro.com/careers/open-positions/",
+  "enabled": true,
+  "source": {
+    "type": "miro",
+    "jobsUrl": "https://miro.com/careers/open-positions/",
+    "vacancyBaseUrl": "https://miro.com/careers/vacancy"
   }
 }
 ```

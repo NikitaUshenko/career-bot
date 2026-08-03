@@ -72,7 +72,7 @@ export function formatEuro(value) {
   }).format(value);
 }
 
-export async function fetchJson(url, options = {}, retryCount = 2) {
+async function fetchWithRetry(url, options, retryCount, parse) {
   let lastError;
 
   for (let attempt = 0; attempt <= retryCount; attempt += 1) {
@@ -95,7 +95,7 @@ export async function fetchJson(url, options = {}, retryCount = 2) {
         throw new Error(`HTTP ${response.status} from ${url}: ${truncate(text, 300)}`);
       }
 
-      return text ? JSON.parse(text) : null;
+      return parse(text);
     } catch (error) {
       lastError = error;
       if (attempt < retryCount) await sleep(500 * 2 ** attempt);
@@ -105,4 +105,12 @@ export async function fetchJson(url, options = {}, retryCount = 2) {
   }
 
   throw lastError;
+}
+
+export async function fetchText(url, options = {}, retryCount = 2) {
+  return fetchWithRetry(url, options, retryCount, (text) => text);
+}
+
+export async function fetchJson(url, options = {}, retryCount = 2) {
+  return fetchWithRetry(url, options, retryCount, (text) => text ? JSON.parse(text) : null);
 }
