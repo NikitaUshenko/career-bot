@@ -205,5 +205,100 @@
       "site": "palantir",
       "region": "global"
     }
+  },
+  {
+    "id": "uber",
+    "name": "Uber",
+    "careersUrl": "https://www.uber.com/global/en/careers/locations/amsterdam/",
+    "enabled": true,
+    "source": {
+      "type": "webpage",
+      "variant": "uber",
+      "listingUrl": "https://jobs.uber.com/en/jobs/?location=Amsterdam&radius=100",
+      "baseUrl": "https://jobs.uber.com"
+    }
+  },
+  {
+    "id": "google",
+    "name": "Google",
+    "careersUrl": "https://www.google.com/about/careers/applications/jobs/results/?location=Netherlands",
+    "enabled": true,
+    "source": {
+      "type": "webpage",
+      "variant": "google",
+      "listingUrl": "https://www.google.com/about/careers/applications/jobs/results/?location=Netherlands",
+      "baseUrl": "https://www.google.com/about/careers/applications/",
+      "defaultLocation": "Netherlands",
+      "linkPattern": "(?:^|/)jobs/results/\\d+-"
+    }
+  },
+  {
+    "id": "microsoft",
+    "name": "Microsoft",
+    "careersUrl": "https://careers.microsoft.com/v2/global/en/locations/amsterdam.html",
+    "enabled": true,
+    "source": {
+      "type": "microsoft",
+      "apiBase": "https://apply.careers.microsoft.com",
+      "domain": "microsoft.com",
+      "location": "Netherlands"
+    }
+  },
+  {
+    "id": "amazon",
+    "name": "Amazon",
+    "careersUrl": "https://www.amazon.jobs/en/locations/amsterdam-netherlands",
+    "enabled": true,
+    "source": {
+      "type": "amazon",
+      "searchUrl": "https://www.amazon.jobs/en/search.json?base_query=&city=Amsterdam&country=NLD&county=Amsterdam&loc_query=Amsterdam%2C%20North%20Holland%2C%20Netherlands&region=North%20Holland&result_limit=100"
+    }
+  },
+  {
+    "id": "optiver",
+    "name": "Optiver",
+    "careersUrl": "https://optiver.com/working-at-optiver/career-opportunities/",
+    "enabled": true,
+    "source": {
+      "type": "webpage",
+      "variant": "optiver",
+      "listingUrl": "https://optiver.com/working-at-optiver/career-opportunities/",
+      "linkPattern": "/join-us/jobs/[^/]+/[^/]+/[^/]+/?$"
+    }
+  },
+  {
+    "id": "tomtom",
+    "name": "TomTom",
+    "careersUrl": "https://www.tomtom.com/careers/",
+    "enabled": true,
+    "source": {
+      "type": "tomtom",
+      "apiUrl": "https://www.tomtom.com/api/careers/jobs",
+      "jobBaseUrl": "https://www.tomtom.com/careers/jobdetails"
+    }
+  },
+  {
+    "id": "mollie",
+    "name": "Mollie",
+    "careersUrl": "https://jobs.mollie.com/vacancies",
+    "enabled": true,
+    "source": {
+      "type": "webpage",
+      "variant": "mollie",
+      "listingUrl": "https://jobs.mollie.com/vacancies",
+      "linkPattern": "(?:^|/)vacancies/[0-9a-f-]+/?$"
+    }
+  },
+  {
+    "id": "picnic",
+    "name": "Picnic",
+    "careersUrl": "https://jobs.picnic.app/en/vacancies",
+    "enabled": true,
+    "source": {
+      "type": "webpage",
+      "variant": "picnic",
+      "listingUrl": "https://jobs.picnic.app/en/vacancies",
+      "linkPattern": "/(?:en/vacancies|nl/vacatures|de/jobangebot|fr/poste-vacant)/[A-Z0-9]+/"
+    }
   }
 ]

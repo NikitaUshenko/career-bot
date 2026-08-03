@@ -2,7 +2,7 @@
 
 A small Node.js job monitor that scans **official company career feeds**, uses Gemini to classify roles and estimate Dutch compensation, and sends only qualifying jobs to Telegram.
 
-It does not query LinkedIn, Indeed, Google Jobs, or another cross-company aggregator. Greenhouse, Lever, and Ashby adapters read the public feed that powers each configured company's own careers page.
+It does not query LinkedIn, Indeed, Google Jobs, or another cross-company aggregator. Every adapter reads the public feed or page that powers the configured company's own careers site.
 
 ## What it does
 
@@ -137,6 +137,14 @@ Edit `config/companies.json`. The starter list includes:
 - Elastic
 - Grafana Labs
 - Palantir
+- Uber
+- Google
+- Microsoft
+- Amazon
+- Optiver
+- TomTom
+- Mollie
+- Picnic
 
 Set `"enabled": false` to temporarily skip a company.
 
@@ -344,8 +352,8 @@ A detected vacancy range overrides the AI estimate only when Gemini identifies i
 
 ## Current limitations
 
-- Built-in adapters cover Greenhouse, Lever, and Ashby.
-- Miro, Booking.com, TomTom, and some other target employers use custom or Workday-style career systems and require extra adapters.
+- Built-in adapters cover Greenhouse, Lever, Ashby, Workday, Jibe, and the official career systems used by the configured companies above.
+- Bespoke career sites may require a small company-specific adapter when their public page or API changes.
 - AI salary estimates are directional, not offers or authoritative salary bands.
 - The deterministic prefilter prioritizes precision and may miss unusually named roles.
 - Repository state works well for a personal bot; a multi-user service should use a database.
