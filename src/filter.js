@@ -2,6 +2,7 @@ import { normalizeWhitespace } from "./utils.js";
 
 const EXCLUDED_SENIORITY = /\b(intern(ship)?|junior|graduate|working student|apprentice)\b/i;
 const EXCLUDED_ENGINEERING = /\b(ios|android|mobile|embedded|firmware|data engineer|machine learning engineer|ml engineer|qa engineer|test engineer|site reliability|sre|devops|security engineer)\b/i;
+const BACKEND_TITLE = /\bback[- ]?end\b/i;
 const EXCLUDED_DESIGN = /\b(graphic|brand|marketing|motion|industrial|fashion|interior) designer\b/i;
 
 const DESIGN_TITLE = /\b(product designer|ux designer|ui\s*\/\s*ux designer|ui[- ]ux designer|interaction designer|experience designer|design systems? designer|product design lead|staff product designer|lead product designer)\b/i;
@@ -52,6 +53,10 @@ export function prefilterJob(job) {
       seniority: inferSeniority(title),
       ruleReason: "Design title and eligible location",
     };
+  }
+
+  if (BACKEND_TITLE.test(title) && !EXPLICIT_ENGINEERING_TITLE.test(title)) {
+    return { eligible: false, reason: "Excluded backend-only role" };
   }
 
   if (EXPLICIT_ENGINEERING_TITLE.test(title) && !EXCLUDED_ENGINEERING.test(title)) {

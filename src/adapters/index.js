@@ -1,5 +1,6 @@
 import { fetchAshbyJobs } from "./ashby.js";
 import { fetchGreenhouseJobs } from "./greenhouse.js";
+import { fetchJibeJobs } from "./jibe.js";
 import { fetchLeverJobs } from "./lever.js";
 
 export async function fetchCompanyJobs(company) {
@@ -10,6 +11,8 @@ export async function fetchCompanyJobs(company) {
       return fetchLeverJobs(company);
     case "ashby":
       return fetchAshbyJobs(company);
+    case "jibe":
+      return fetchJibeJobs(company);
     default:
       throw new Error(`Unsupported source type: ${company.source.type}`);
   }

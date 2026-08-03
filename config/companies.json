@@ -10,6 +10,18 @@
     }
   },
   {
+    "id": "booking",
+    "name": "Booking.com",
+    "careersUrl": "https://jobs.booking.com/booking/jobs",
+    "enabled": true,
+    "source": {
+      "type": "jibe",
+      "apiUrl": "https://jobs.booking.com/api/jobs",
+      "jobBaseUrl": "https://jobs.booking.com/booking/jobs",
+      "brand": "Booking.com"
+    }
+  },
+  {
     "id": "jetbrains",
     "name": "JetBrains",
     "careersUrl": "https://www.jetbrains.com/careers/jobs/",

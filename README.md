@@ -118,6 +118,7 @@ Use `npm run scan:existing` instead when you intentionally want Telegram message
 Edit `config/companies.json`. The starter list includes:
 
 - Databricks
+- Booking.com
 - JetBrains
 - Planet
 - Figma
@@ -187,6 +188,23 @@ Use `"region": "global"` for `jobs.lever.co` and `"region": "eu"` for the EU Lev
   "source": {
     "type": "ashby",
     "boardName": "Example"
+  }
+}
+```
+
+### Jibe / iCIMS
+
+```json
+{
+  "id": "example",
+  "name": "Example",
+  "careersUrl": "https://jobs.example.com/jobs",
+  "enabled": true,
+  "source": {
+    "type": "jibe",
+    "apiUrl": "https://jobs.example.com/api/jobs",
+    "jobBaseUrl": "https://jobs.example.com/jobs",
+    "brand": "Example"
   }
 }
 ```

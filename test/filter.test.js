@@ -36,3 +36,12 @@ test("rejects a backend-only role", () => {
   }));
   assert.equal(result.eligible, false);
 });
+
+test("rejects a backend title even when its description mentions web technologies", () => {
+  const result = prefilterJob(job({
+    title: "Backend Software Engineer",
+    description: "Backend services that support our website, using Node.js, TypeScript, and JSX.",
+  }));
+  assert.equal(result.eligible, false);
+  assert.equal(result.reason, "Excluded backend-only role");
+});
