@@ -49,6 +49,26 @@ export function touchJob(state, job, now) {
   return { key, isNew: false, changed, record: existing };
 }
 
+export function shouldProcessJob({ isNew, record, notifyExisting, notifyUpdates, changed }) {
+  return (
+    isNew ||
+    Boolean(record.lastProcessingError) ||
+    !record.processedAt ||
+    (notifyExisting && record.decision === "initial-baseline") ||
+    (notifyUpdates && changed)
+  );
+}
+
+export function markProcessingSucceeded(record, now) {
+  record.processedAt = now;
+  delete record.lastProcessingError;
+}
+
+export function markProcessingFailed(record, error) {
+  record.processedAt = null;
+  record.lastProcessingError = String(error?.message ?? error);
+}
+
 export function saveState(statePath, state) {
   fs.mkdirSync(path.dirname(statePath), { recursive: true });
   const tempPath = `${statePath}.tmp`;

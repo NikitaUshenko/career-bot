@@ -6,7 +6,15 @@ import { evaluateJob } from "./decision.js";
 import { loadDotEnv } from "./env.js";
 import { prefilterJob } from "./filter.js";
 import { extractPublishedSalary } from "./salary.js";
-import { jobKey, loadState, saveState, touchJob } from "./state.js";
+import {
+  jobKey,
+  loadState,
+  markProcessingFailed,
+  markProcessingSucceeded,
+  saveState,
+  shouldProcessJob,
+  touchJob,
+} from "./state.js";
 import { buildJobMessage, sendTelegramMessage } from "./telegram.js";
 import { sleep } from "./utils.js";
 
@@ -61,11 +69,13 @@ async function main() {
 
   for (const job of uniqueJobs) {
     const touched = touchJob(state, job, now);
-    const needsProcessing =
-      touched.isNew ||
-      !touched.record.processedAt ||
-      (notifyExisting && touched.record.decision === "initial-baseline") ||
-      (config.notifyUpdates && touched.changed);
+    const needsProcessing = shouldProcessJob({
+      isNew: touched.isNew,
+      record: touched.record,
+      notifyExisting,
+      notifyUpdates: config.notifyUpdates,
+      changed: touched.changed,
+    });
 
     if (needsProcessing) pending.push({ job, record: touched.record });
   }
@@ -89,7 +99,7 @@ async function main() {
   for (const item of pending) {
     const prefilter = prefilterJob(item.job);
     if (!prefilter.eligible) {
-      item.record.processedAt = now;
+      markProcessingSucceeded(item.record, now);
       item.record.decision = `filtered: ${prefilter.reason}`;
       continue;
     }
@@ -115,7 +125,6 @@ async function main() {
       analyzed += 1;
 
       const evaluation = evaluateJob({ analysis, publishedSalary, config });
-      item.record.processedAt = now;
       item.record.decision = evaluation.payDecision;
       item.record.analysis = {
         roleFamily: analysis.roleFamily,
@@ -125,7 +134,10 @@ async function main() {
         confidence: analysis.confidence,
       };
 
-      if (!evaluation.shouldNotify) continue;
+      if (!evaluation.shouldNotify) {
+        markProcessingSucceeded(item.record, now);
+        continue;
+      }
 
       const message = buildJobMessage({
         job: item.job,
@@ -148,11 +160,12 @@ async function main() {
         await sleep(150);
       }
 
+      markProcessingSucceeded(item.record, now);
       item.record.notifiedAt = now;
       sent += 1;
     } catch (error) {
       failures += 1;
-      item.record.lastProcessingError = String(error.message ?? error);
+      markProcessingFailed(item.record, error);
       console.error(`Failed to process ${item.job.company} — ${item.job.title}:`, error);
     }
   }
