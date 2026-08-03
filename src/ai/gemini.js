@@ -136,12 +136,8 @@ export async function analyzeJobWithGemini({ job, prefilter, publishedSalary, ap
   const requestBody = {
     contents: [{ parts: [{ text: buildPrompt(job, prefilter, publishedSalary) }] }],
     generationConfig: {
-      responseFormat: {
-        text: {
-          mimeType: "application/json",
-          schema: RESPONSE_SCHEMA,
-        },
-      },
+      responseMimeType: "application/json",
+      responseSchema: RESPONSE_SCHEMA,
     },
   };
 

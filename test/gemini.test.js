@@ -58,8 +58,9 @@ test("sends the current Gemini structured-output request shape and normalizes th
       model: "gemini-3.5-flash-lite",
     });
 
-    assert.equal(requestBody.generationConfig.responseFormat.text.mimeType, "application/json");
-    assert.equal(requestBody.generationConfig.responseFormat.text.schema.type, "object");
+    assert.equal(requestBody.generationConfig.responseMimeType, "application/json");
+    assert.equal(requestBody.generationConfig.responseSchema.type, "object");
+    assert.equal(requestBody.generationConfig.responseFormat, undefined);
     assert.equal(requestBody.tools, undefined);
     assert.equal(result.matchScore, 91);
     assert.equal(result.estimatedBaseMin, 105000);
